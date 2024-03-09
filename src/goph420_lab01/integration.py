@@ -17,18 +17,25 @@ def integrate_newton(x,f,alg):
     ValueError: if x is not in acending order
     TypeError: if alg is str-like 
     """
-    if alg != 'simp' | 'trap':
-        raise ValueError(f"alg {alg} is not simp or trap")
+
+    #check imputs are float like and array like
+    x = np.array(x, dtype = float)
+    f = np.array(f, dtype = float)
+
+    #check shape of arrays are equal 
     if np.shape(x) != np.shape(f):
         raise ValueError(f"x and f have different lengths or shape {np.shape(f)} != {np.shape(x)}")
     n = len(x)
     s = 0.0
+
+    #check that x is in accending order
     for i in range (n-1):
         if x[i+1] < x[i]: raise ValueError("x arrary not in acending order")
-    if alg == 'trap':
+
+    if alg == "trap":
         for k in range(n-1):
             s +=(x[k+1]-x[k])*(f[k+1]+f[k])/2
-    elif alg == 'simp':
+    elif alg == "simp":
         if n%2 != 0:  
             for k in range(0,n-1,2):
                 s += (x[k+2]-x[k])*(f[k]+4*f[k+1]+f[k+2])/6 
@@ -36,7 +43,8 @@ def integrate_newton(x,f,alg):
             for k in range(0,n-4,2):
                 s += (x[k+2]-x[k])*(f[k]+4*f[k+1]+f[k+2])/6 
             s += (x[n-1]-x[n-4])*(f[n-4]+3*f[n-3]+3*f[n-2]+f[n-1])/8
-            
+    else:
+        raise ValueError(f"alg {alg} is not simp or trap")
     return s
 
 
