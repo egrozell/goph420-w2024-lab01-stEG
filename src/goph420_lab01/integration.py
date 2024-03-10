@@ -72,28 +72,26 @@ def integrate_gauss(f,lims,npts:int=3):
     n=2*npts-1
 
     if npts==3:
-        pts = [np.sqrt(3/5),0,np.sqrt(3/5)]
-        wts = [5/9,8/9,5/9]
+        pts = np.array([np.sqrt(3/5),0,np.sqrt(3/5)])
+        wts = np.array([5/9,8/9,5/9])
     elif npts==1:
-        pts = [0]
-        wts = [2.0]
+        pts = np.array([0])
+        wts = np.array([2.0])
     elif npts==2:
-        pts = [-1/np.sqrt(3),1/np.sqrt(3)]
-        wts = [1.0,1.0]
+        pts = np.array([-1/np.sqrt(3),1/np.sqrt(3)])
+        wts = np.array([1.0,1.0])
     elif npts==4:
-        pts = [-np.sqrt((3/7)+(2/7)*np.sqrt(6/5)),-np.sqrt((3/7)-(2/7)*np.sqrt(6/5)),
-               np.sqrt((3/7)-(2/7)*np.sqrt(6/5)),np.sqrt((3/7)+(2/7)*np.sqrt(6/5))]
-        wts = [(18-np.sqrt(30))/36,(18+np.sqrt(30))/36,(18+np.sqrt(30))/36,(18-np.sqrt(30))/36]
+        pts = np.array([-np.sqrt((3/7)+(2/7)*np.sqrt(6/5)),-np.sqrt((3/7)-(2/7)*np.sqrt(6/5)),
+               np.sqrt((3/7)-(2/7)*np.sqrt(6/5)),np.sqrt((3/7)+(2/7)*np.sqrt(6/5))])
+        wts = np.array([(18-np.sqrt(30))/36,(18+np.sqrt(30))/36,(18+np.sqrt(30))/36,(18-np.sqrt(30))/36])
     elif npts==5:
-        pts = [(-1/3)*np.sqrt(5+2*np.sqrt(10/7)),(-1/3)*np.sqrt(5-2*np.sqrt(10/7)),0,
-               (1/3)*np.sqrt(5-2*np.sqrt(10/7)),(1/3)*np.sqrt(5+2*np.sqrt(10/7))]
-        wts = [(322-13*np.sqrt(70))/900,(322+13*np.sqrt(70))/900,128/225,
-               (322+13*np.sqrt(70))/900,(322-13*np.sqrt(70))/900]
+        pts = np.array([(-1/3)*np.sqrt(5+2*np.sqrt(10/7)),(-1/3)*np.sqrt(5-2*np.sqrt(10/7)),0,
+               (1/3)*np.sqrt(5-2*np.sqrt(10/7)),(1/3)*np.sqrt(5+2*np.sqrt(10/7))])
+        wts = np.array([(322-13*np.sqrt(70))/900,(322+13*np.sqrt(70))/900,128/225,
+               (322+13*np.sqrt(70))/900,(322-13*np.sqrt(70))/900])
     else:
         raise ValueError ("npts must be 1,2,3,4,or 5")
-    i = 0.0
-    pfit = .5*(a+b)+.5*(b-a)*pts
-    wfit = .5*(b-a)*wts
-    for j in range (0,n):
-        i+=wts[i]*f(pts[i])
+    # pfit = .5*(a+b)+.5*(b-a)*pts
+    # wfit = .5*(b-a)*wts
+    i = np.sum(0.5*b-a)*sum(wts*f(0.5*(b-a)*pts+0.5*(b+a)))
     return i
