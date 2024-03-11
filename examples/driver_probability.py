@@ -10,7 +10,7 @@ def main():
     #Probability Approx Error
     plt.loglog(k1,eps1,label="k")
     plt.ylabel('Approx Relative Error ('+r'$\epsilon$'+'a)')
-    plt.xlabel('N points')
+    plt.xlabel('N order')
     plt.title('Seismic Event With P(M > 4.0)')
     plt.legend()
     plt.savefig('figures/probality_convergence.png')
@@ -23,7 +23,7 @@ def main():
     #Probability Approx Error
     plt.loglog(k2,eps2,label="k")
     plt.ylabel('Approx Relative Error ('+r'$\epsilon$'+'a)')
-    plt.xlabel('N points')
+    plt.xlabel('N order')
     plt.title('Probability for a measured distance L is between 10.25m and 10.35m')
     plt.legend()
     plt.savefig('figures/probality_convergence2.png')
