@@ -72,7 +72,7 @@ def integrate_gauss(f,lims,npts:int=3):
     n=2*npts-1
 
     if npts==3:
-        pts = np.array([np.sqrt(3/5),0,np.sqrt(3/5)])
+        pts = np.array([-np.sqrt(3/5),0,np.sqrt(3/5)])
         wts = np.array([5/9,8/9,5/9])
     elif npts==1:
         pts = np.array([0])
@@ -81,17 +81,15 @@ def integrate_gauss(f,lims,npts:int=3):
         pts = np.array([-1/np.sqrt(3),1/np.sqrt(3)])
         wts = np.array([1.0,1.0])
     elif npts==4:
-        pts = np.array([-np.sqrt((3/7)+(2/7)*np.sqrt(6/5)),-np.sqrt((3/7)-(2/7)*np.sqrt(6/5)),
-               np.sqrt((3/7)-(2/7)*np.sqrt(6/5)),np.sqrt((3/7)+(2/7)*np.sqrt(6/5))])
+        pts = np.array([-np.sqrt(525+70*np.sqrt(30))/35,-np.sqrt(525-70*np.sqrt(30))/35,np.sqrt(525-70*np.sqrt(30))/35,np.sqrt(525+70*np.sqrt(30))/35])
         wts = np.array([(18-np.sqrt(30))/36,(18+np.sqrt(30))/36,(18+np.sqrt(30))/36,(18-np.sqrt(30))/36])
     elif npts==5:
-        pts = np.array([(-1/3)*np.sqrt(5+2*np.sqrt(10/7)),(-1/3)*np.sqrt(5-2*np.sqrt(10/7)),0,
-               (1/3)*np.sqrt(5-2*np.sqrt(10/7)),(1/3)*np.sqrt(5+2*np.sqrt(10/7))])
+        pts = np.array([-np.sqrt(245+14*np.sqrt(70))/21,-np.sqrt(245-14*np.sqrt(70))/21,0,np.sqrt(245-14*np.sqrt(70))/21,np.sqrt(245+14*np.sqrt(70))/21])
         wts = np.array([(322-13*np.sqrt(70))/900,(322+13*np.sqrt(70))/900,128/225,
                (322+13*np.sqrt(70))/900,(322-13*np.sqrt(70))/900])
     else:
         raise ValueError ("npts must be 1,2,3,4,or 5")
     # pfit = .5*(a+b)+.5*(b-a)*pts
     # wfit = .5*(b-a)*wts
-    i = np.sum(0.5*b-a)*sum(wts*f(0.5*(b-a)*pts+0.5*(b+a)))
+    i = 0.5*(b-a)*sum(wts*f(0.5*(b-a)*pts+0.5*(b+a)))
     return i

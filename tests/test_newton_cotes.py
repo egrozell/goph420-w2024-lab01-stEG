@@ -24,7 +24,7 @@ class test_trap_odd(unittest.TestCase):
 class test_simp_even(unittest.TestCase):
     def setUp(self):
         self.x_simp_even = [0,1,2,3,4,5]
-        self.x_simp_even = [0,3,12,27,48,75]
+        self.f_simp_even = [0,3,12,27,48,75]
     def test_value_simp_even(self):
         expected = 125
         self.assertEqual(integrate_newton(self.x_simp_even,self.f_simp_even,'simp'),expected)
@@ -32,7 +32,7 @@ class test_simp_even(unittest.TestCase):
 class test_simp_odd(unittest.TestCase):
     def setUp(self):
         self.x_simp_odd = [0,1,2,3,4]
-        self.x_simp_odd = [0,3,12,27,48]
+        self.f_simp_odd = [0,3,12,27,48]
 
     def test_value_simp_odd(self):
         expected = 64
