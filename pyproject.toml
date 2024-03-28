@@ -20,4 +20,4 @@ classifiers = [
 "License :: GNU General Public License v3",
 ]
 [project.urls]
-"Homepage" = "https://github.com/egrozell/goph-419-lab02-stEG"
+"Homepage" = "https://github.com/egrozell/goph420-w2024-lab02-stEG"
